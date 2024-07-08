@@ -63,6 +63,7 @@ const mockContextValue = {
     token: undefined,
   },
   loading: false,
+  pendingTransaction: false,
   handleToggle: jest.fn(),
   handleSubmit: jest.fn(),
   handleAmountChange: jest.fn(),
