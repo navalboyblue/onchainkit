@@ -19,11 +19,9 @@ const useSwapContextMock = useSwapContext as jest.Mock;
 
 describe('SwapButton', () => {
   const mockHandleSubmit = jest.fn();
-  const mockOnSubmit = jest.fn();
 
   beforeEach(() => {
     mockHandleSubmit.mockClear();
-    mockOnSubmit.mockClear();
   });
 
   it('renders button with text "Swap" when not loading', () => {
@@ -34,7 +32,7 @@ describe('SwapButton', () => {
       handleSubmit: mockHandleSubmit,
     });
 
-    render(<SwapButton onSubmit={mockOnSubmit} />);
+    render(<SwapButton />);
 
     const button = screen.getByTestId('ockSwapButton_Button');
     expect(button).toHaveTextContent('Swap');
@@ -49,7 +47,7 @@ describe('SwapButton', () => {
       handleSubmit: mockHandleSubmit,
     });
 
-    render(<SwapButton onSubmit={mockOnSubmit} />);
+    render(<SwapButton />);
 
     const button = screen.getByTestId('ockSwapButton_Button');
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
@@ -64,10 +62,26 @@ describe('SwapButton', () => {
       handleSubmit: mockHandleSubmit,
     });
 
-    render(<SwapButton onSubmit={mockOnSubmit} />);
+    render(<SwapButton />);
 
     const button = screen.getByTestId('ockSwapButton_Button');
     expect(button).toBeDisabled();
+  });
+
+  it('calls handleSubmit with mockHandleSubmit when clicked', () => {
+    useSwapContextMock.mockReturnValue({
+      to: { loading: false, amount: 1, token: 'ETH' },
+      from: { loading: false, amount: 1, token: 'BTC' },
+      loading: false,
+      handleSubmit: mockHandleSubmit,
+    });
+
+    render(<SwapButton />);
+
+    const button = screen.getByTestId('ockSwapButton_Button');
+    fireEvent.click(button);
+
+    expect(mockHandleSubmit).toHaveBeenCalled();
   });
 
   it('applies additional className correctly', () => {
@@ -79,7 +93,7 @@ describe('SwapButton', () => {
     });
 
     const customClass = 'custom-class';
-    render(<SwapButton className={customClass} onSubmit={mockOnSubmit} />);
+    render(<SwapButton className={customClass} />);
 
     const button = screen.getByTestId('ockSwapButton_Button');
     expect(button).toHaveClass(customClass);
