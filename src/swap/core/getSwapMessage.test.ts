@@ -82,7 +82,7 @@ describe('getSwapMessage', () => {
   test('returns CONFIRM IN WALLET when pending transaction', () => {
     const params = {
       ...baseParams,
-      pendingTransaction: true,
+      isTransactionPending: true,
     };
     expect(getSwapMessage(params)).toBe(SwapMessage.CONFIRM_IN_WALLET);
   });

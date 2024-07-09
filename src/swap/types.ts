@@ -70,7 +70,7 @@ export type GetSwapQuoteResponse = SwapQuote | SwapError;
 export type GetSwapMessageParams = {
   error?: SwapErrorState;
   loading?: boolean;
-  pendingTransaction?: boolean;
+  isTransactionPending?: boolean;
   to: SwapUnit;
   from: SwapUnit;
 };
@@ -143,7 +143,7 @@ export type SwapContextType = {
   from: SwapUnit;
   to: SwapUnit;
   loading: boolean;
-  pendingTransaction: boolean;
+  isTransactionPending: boolean;
   handleSubmit: (
     onError?: (error: SwapError) => void,
     onSuccess?: (txReceipt: TransactionReceipt) => void | Promise<void>,
