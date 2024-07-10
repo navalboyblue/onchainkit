@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.24.4
+
+### Patch Changes
+
+- c5ca26d: - **docs**: Add isSliced option to the Address component. This allows this component to render the full users address when set to false. Remove the isSliced field from the Name component and update the component to return null if the ENS name is not found for the given address. Update onchainkit dependency to version 0.24.3. Add sub sections to the Address and Name pages. By @cpcramer #733
+- f512246: - **docs**: Add create env file image. By @cpcramer #772
+- 19fd6b8: - **docs**: Update `Name` and `Address` docs code snippet and displayed component to fully match - removed some hidden styling for readablility to maximize authenticity. By @cpcramer #770
+
 ## 0.24.3
 
 ### Patch Changes
